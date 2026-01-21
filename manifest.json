@@ -17,7 +17,7 @@
         "http://localhost:*/firestore*",
         "http://127.0.0.1:*/firestore*"
       ],
-      "js": ["scripts/content.js"]
+      "js": ["content.js"]
     }
   ]
 }

@@ -437,7 +437,6 @@ function injectProductionButton() {
 
       // Styles for "Add Field" neighbor - strictly 0 margin
       btn.style.margin = "0";
-//      btn.style.alignSelf = "center";
       btn.style.display = "inline-block";
 
       panel.dataset.hasJsonBtn = "true";
