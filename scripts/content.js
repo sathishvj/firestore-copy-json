@@ -358,7 +358,7 @@ function createCopyButton(onClick) {
   return btn;
 }
 
-function injectButton() {
+function injectEmulatorButton() {
   // 1. Emulator Injection
   // We want to attach to EVERY visible field list (though usually just one).
   const emulatorLists = document.querySelectorAll(".Firestore-Field-List");
@@ -372,7 +372,7 @@ function injectButton() {
     // We'll look at the parent's children.
     const parent = list.parentElement;
     let targetBtn = null;
-    
+
     // Look for any button that looks like a main action
     // Note: Emulator class names are generic. We might look for "Add field" text or aria-label.
     if (parent) {
@@ -382,14 +382,14 @@ function injectButton() {
           // Exclude buttons INSIDE the list (field-level adds)
           if (!list.contains(b)) {
             targetBtn = b;
-            break; 
+            break;
           }
         }
       }
     }
 
     const btn = createCopyButton(() => getFirestoreJSON(list));
-    
+
     if (targetBtn) {
       // Insert after "Add field"
       if (targetBtn.nextSibling !== btn) {
@@ -401,11 +401,12 @@ function injectButton() {
       parent.insertBefore(btn, list);
       btn.style.margin = "0 0 8px 0";
     }
-    
+
     list.dataset.hasJsonBtn = "true";
   });
+}
 
-
+function injectProductionButton() {
   // 2. Production Injection
   const panelContainers = document.querySelectorAll(".panel-container");
   panelContainers.forEach((panel) => {
@@ -413,7 +414,7 @@ function injectButton() {
     if (panel.dataset.hasJsonBtn === "true") return;
 
     let target = null;
-    
+
     // Strategy: Find "Add field" text specifically
     const spans = panel.querySelectorAll("span");
     for (const span of spans) {
@@ -424,17 +425,17 @@ function injectButton() {
         if (target) break;
       }
     }
-    
+
     if (target) {
       const btn = createCopyButton(() => getFirestoreJSON(panel));
       // Insert after
       target.after(btn);
-      
+
       // Styles for "Add Field" neighbor - strictly 0 margin
       btn.style.margin = "0";
       btn.style.alignSelf = "center";
       btn.style.display = "inline-block";
-      
+
       panel.dataset.hasJsonBtn = "true";
     } else {
        // Strategy C: Header (Read-only or no "Add field" button)
@@ -442,14 +443,24 @@ function injectButton() {
        if (leftContainer) {
          const btn = createCopyButton(() => getFirestoreJSON(panel));
          leftContainer.appendChild(btn);
-         
+
          btn.style.margin = "0";
          btn.style.alignSelf = "auto";
          
+
          panel.dataset.hasJsonBtn = "true";
        }
     }
   });
+}
+
+function injectButton() {
+  const host = window.location.hostname;
+  if (host === "localhost" || host === "127.0.0.1") {
+    injectEmulatorButton();
+  } else if (host === "console.firebase.google.com") {
+    injectProductionButton();
+  }
 }
 
 // Observe DOM changes to inject button when panels load
