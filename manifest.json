@@ -1,0 +1,23 @@
+{
+  "name": "Firestore Copy JSON Object",
+  "version": "1.0",
+  "manifest_version": 3,
+  "description": "Copy Firestore JSON object to clipboard.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["scripting"],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://console.firebase.google.com/*",
+        "http://localhost:*/firestore*",
+        "http://127.0.0.1:*/firestore*"
+      ],
+      "js": ["scripts/content.js"]
+    }
+  ]
+}

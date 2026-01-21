@@ -1,0 +1,21 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Chrome extension specific
+*.crx
+*.pem
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Potential future dependencies
+node_modules/
