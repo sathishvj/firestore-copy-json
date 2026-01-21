@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firestore Copy JSON</title>
+  <style>
+    body {
+      width: 320px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      padding: 15px;
+      color: #333;
+    }
+    h1 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #ffa500; /* Matching the button color from content script */
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.4;
+      margin-bottom: 15px;
+    }
+    .version {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #F75F5E;
+    }
+    .utilery-link {
+      color: inherit;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Firestore Copy JSON Object</h1>
+  
+  <p>
+    A simple tool to copy Firestore documents as JSON directly from the Firebase Console or local Emulator.
+  </p>
+
+  <div class="version">Version: <span id="version-number">...</span></div>
+
+  <div class="footer">
+      Created with &hearts; by <a href="https://www.linkedin.com/in/sathishvj/" target="_blank"
+        style="color: inherit; text-decoration: none;">sathish vj</a> and <a
+        href="https://utilery.com?ur=firestore_copy_json_extension" target="_blank" class="utilery-link">Utilery</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
