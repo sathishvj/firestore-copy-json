@@ -18,8 +18,8 @@
     {
       "matches": [
         "https://console.firebase.google.com/*",
-        "http://localhost:*/firestore*",
-        "http://127.0.0.1:*/firestore*"
+        "*://localhost/*",
+        "*://127.0.0.1/*"
       ],
       "js": ["content.js"]
     }
