@@ -409,71 +409,40 @@ function injectEmulatorButton() {
 function injectProductionButton() {
 
   // 2. Production Injection
-
   const panelContainers = document.querySelectorAll(".panel-container");
 
   panelContainers.forEach((panel) => {
-
     // Strategy: Find "Add field" text specifically
-
     let target = null;
-
     const spans = panel.querySelectorAll("span");
 
     for (const span of spans) {
-
       const text = span.textContent.trim();
-
       if (text === "Add field") {
-
         // Traverse up to find the button component or button element
-
         target = span.closest("f7e-panel-add-data-button") || span.closest("button");
-
         if (target) break;
-
       }
-
     }
-
-
 
     if (target) {
-
       // If the button is already there, don't re-inject
-
       if (panel.querySelector(`.${COPY_BTN_CLASS}`)) {
-
         return; 
-
       }
 
-
-
       const btn = createCopyButton(() => getFirestoreJSON(panel));
-
       // Insert after
-
       target.after(btn);
 
-
-
       // Styles for "Add Field" neighbor - strictly 0 margin
-
       btn.style.margin = "0";
-
-      btn.style.alignSelf = "center";
-
+//      btn.style.alignSelf = "center";
       btn.style.display = "inline-block";
 
-      
-
       panel.dataset.hasJsonBtn = "true";
-
     }
-
   });
-
 }
 
 function injectButton() {
