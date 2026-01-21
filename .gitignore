@@ -19,3 +19,5 @@ npm-debug.log*
 
 # Potential future dependencies
 node_modules/
+
+*.zip
